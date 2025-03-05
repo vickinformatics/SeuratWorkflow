@@ -1,5 +1,5 @@
 # SeuratWorkflow
-ATTENTION: The user needs to source the custom FindMinimumPCs function before running the SeuratWorkflow, as this function is required to compute the minimum PCs. Please see the documentation for FindMinimumPCs. 
+ATTENTION: The user needs to source the custom FindMinimumPCs function before running the SeuratWorkflow, as this function is required to compute the minimum PCs. Please see the documentation for FindMinimumPCs (https://github.com/vickinformatics/FindMinimumPCs). 
 
 ## Description
 The SeuratWorkflow function is a custom analysis pipeline designed to preprocess, integrate, and visualize single-cell RNA sequencing (scRNA-seq) data using Seurat. It provides a flexible and comprehensive approach to analyzing scRNA-seq datasets, using normalization, feature selection, dimensionality reduction, and integration methods such as Harmony and Canonical Correlation Analysis (CCA). It also includes clustering, dimensionality reduction visualizations (t-SNE and UMAP), and allows for the handling of batch effects during integration. This function is for researchers who wish to integrate multiple datasets from different experimental batches or need a streamlined tool to help them perform common analysis steps with ease.

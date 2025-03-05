@@ -5,7 +5,7 @@ Note: If the user chooses not to define the number of PCs for PCA or Harmony (i.
 The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scRNA-seq) analysis pipeline designed to preprocess, integrate, and visualize data using the Seurat workflow. It includes steps for normalization, feature selection, dimensionality reduction, and data integration using methods such as Harmony, Canonical Correlation Analysis (CCA), Reciprocal PCA (RPCA), and Joint PCA (JPCA). It also supports clustering and dimensionality reduction visualizations like t-SNE and UMAP.
 
 ## Arguments
-- `seurat`: The Seurat object containing the single-cell RNA sequencing data.
+- `seurat`: A Seurat object containing the single-cell RNA sequencing data.
 - `batch_column`: The metadata column name in the Seurat object representing the batch or condition variable (default is "orig.ident").
 - `nfeatures`: The number of variable features to select for downstream analysis (default is 2000).
 - `seed`: A random seed for reproducibility (default is 123).

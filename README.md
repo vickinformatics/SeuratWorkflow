@@ -24,3 +24,14 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - The user can specify the number of principal components (`PCs_pca`, `PCs_harmony`, etc.) to use for each reduction method.
 - Added `run_integration` option to allow users to choose whether to perform data integration.
 - Introduced more integration methods, including Reciprocal PCA and Joint PCA (RPCA and JPCA), alongside the existing Harmony and CCA methods.
+
+## Citations
+<ins>Seurat</ins>
+- Hao Y, Stuart T, Kowalski MH, Choudhary S, Hoffman P, Hartman A, Srivastava A, Molla G, Madad S, Fernandez-Granda C, Satija R (2023). “Dictionary learning for integrative, multimodal and scalable single-cell analysis.” _Nature Biotechnology_. doi:10.1038/s41587-023-01767-y, https://doi.org/10.1038/s41587-023-01767-y.
+- Hao Y, Hao S, Andersen-Nissen E, III WMM, Zheng S, Butler A, Lee MJ, Wilk AJ, Darby C, Zagar M, Hoffman P, Stoeckius M, Papalexi E, Mimitou EP, Jain J, Srivastava A, Stuart T, Fleming LB, Yeung B, Rogers AJ, McElrath JM, Blish CA, Gottardo R, Smibert P, Satija R (2021). “Integrated analysis of multimodal single-cell data.” _Cell_. doi:10.1016/j.cell.2021.04.048, https://doi.org/10.1016/j.cell.2021.04.048.
+- Stuart T, Butler A, Hoffman P, Hafemeister C, Papalexi E, III WMM, Hao Y, Stoeckius M, Smibert P, Satija R (2019). “Comprehensive Integration of Single-Cell Data.” _Cell_, **177**, 1888-1902. doi:10.1016/j.cell.2019.05.031, https://doi.org/10.1016/j.cell.2019.05.031.
+- Butler A, Hoffman P, Smibert P, Papalexi E, Satija R (2018). “Integrating single-cell transcriptomic data across different conditions, technologies, and species.” _Nature Biotechnology_, **36**, 411-420. doi:10.1038/nbt.4096, https://doi.org/10.1038/nbt.4096.
+- Satija R, Farrell JA, Gennert D, Schier AF, Regev A (2015). “Spatial reconstruction of single-cell gene expression data.” _Nature Biotechnology_, **33**, 495-502. doi:10.1038/nbt.3192, https://doi.org/10.1038/nbt.3192.
+
+<ins>Harmony</ins>
+- Korsunsky I, Millard N, Fan J, Slowikowski K, Zhang F, Wei K, Baglaenko Y, Brenner M, Loh P, Raychaudhuri S (2019). “Fast, sensitive and accurate integration of single-cell data with Harmony.” Nature Methods, 16(12), 1289–1296. https://doi.org/10.1038/s41592-019-0619-0.

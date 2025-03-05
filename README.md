@@ -9,7 +9,7 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - `batch_column`: The metadata column name in the Seurat object representing the batch or condition variable (default is "orig.ident").
 - `nfeatures`: The number of variable features to select for downstream analysis (default is 2000).
 - `seed`: A random seed for reproducibility (default is 123).
-- `PCs_pca`: The number of principal components (PCs) to use for PCA. If not specified, it will be calculated using the FindMinimumPCs() function.
+- `PCs_pca`: The number of principal components (PCs) to use for PCA. If not specified, it will be calculated using the `FindMinimumPCs` function.
 - `PCs_harmony`: The number of principal components (PCs) to use for Harmony integration. If not specified, it will be calculated using the `FindMinimumPCs` function.
 - `PCs_cca`: The number of principal components (PCs) to use for CCA integration (default is 30).
 - `PCs_rpca`: The number of principal components (PCs) to use for RPCA integration (default is 30).

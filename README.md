@@ -8,6 +8,7 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - `seurat`: A Seurat object containing the single-cell RNA sequencing data.
 - `batch_column`: The metadata column name in the Seurat object representing the batch or condition variable (default is "orig.ident").
 - `nfeatures`: The number of variable features to select for downstream analysis (default is 2000).
+- `variables_to_regress`: A character vector of metadata variables to regress out during scaling (e.g., c("percent.mt", "nCount_RNA")). If NULL, no regression is performed (default is NULL).
 - `seed`: A random seed for reproducibility (default is 123).
 - `PCs_pca`: The number of principal components (PCs) to use for PCA. If not specified, it will be calculated using the `FindMinimumPCs` function.
 - `PCs_harmony`: The number of principal components (PCs) to use for Harmony integration. If not specified, it will be calculated using the `FindMinimumPCs` function.
@@ -27,7 +28,10 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - Introduced more integration methods, including Reciprocal PCA and Joint PCA (RPCA and JPCA), alongside the existing Harmony and CCA methods.
 - Added `run_tSNE_UMAP` option to allow users to choose whether to perform tSNE and UMAP dimensionality reductions.
 
-## Citations
+<ins>April 3<sup>rd</sup>, 2025</ins>
+- Added `variables_to_regress` argument to allow users to regress out unwanted sources of variation (e.g., mitochondrial content, RNA count) during scaling via `ScaleData(vars.to.regress = ...)`.
+
+## References
 <ins>Seurat</ins>
 - Hao Y, Stuart T, Kowalski MH, Choudhary S, Hoffman P, Hartman A, Srivastava A, Molla G, Madad S, Fernandez-Granda C, Satija R (2023). “Dictionary learning for integrative, multimodal and scalable single-cell analysis.” _Nature Biotechnology_. doi:10.1038/s41587-023-01767-y, https://doi.org/10.1038/s41587-023-01767-y.
 - Hao Y, Hao S, Andersen-Nissen E, III WMM, Zheng S, Butler A, Lee MJ, Wilk AJ, Darby C, Zagar M, Hoffman P, Stoeckius M, Papalexi E, Mimitou EP, Jain J, Srivastava A, Stuart T, Fleming LB, Yeung B, Rogers AJ, McElrath JM, Blish CA, Gottardo R, Smibert P, Satija R (2021). “Integrated analysis of multimodal single-cell data.” _Cell_. doi:10.1016/j.cell.2021.04.048, https://doi.org/10.1016/j.cell.2021.04.048.

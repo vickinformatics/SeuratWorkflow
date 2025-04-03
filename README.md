@@ -22,14 +22,14 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - `resolutions`: A numeric vector of resolutions to be used in clustering.
 
 ## Updates
+<ins>April 3<sup>rd</sup>, 2025</ins>
+- Added `variables_to_regress` argument to allow users to regress out unwanted sources of variation (e.g., mitochondrial content, RNA count) during scaling via `ScaleData(vars.to.regress = ...)`.
+
 <ins>March 5<sup>th</sup>, 2025</ins>
 - The user can specify the number of principal components (`PCs_pca`, `PCs_harmony`, etc.) to use for each reduction method.
 - Added `run_integration` option to allow users to choose whether to perform data integration.
 - Introduced more integration methods, including Reciprocal PCA and Joint PCA (RPCA and JPCA), alongside the existing Harmony and CCA methods.
 - Added `run_tSNE_UMAP` option to allow users to choose whether to perform tSNE and UMAP dimensionality reductions.
-
-<ins>April 3<sup>rd</sup>, 2025</ins>
-- Added `variables_to_regress` argument to allow users to regress out unwanted sources of variation (e.g., mitochondrial content, RNA count) during scaling via `ScaleData(vars.to.regress = ...)`.
 
 ## References
 <ins>Seurat</ins>

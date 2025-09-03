@@ -24,7 +24,7 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 
 ## Updates
 <ins>September 3<sup>rd</sup>, 2025</ins>
-- Added `check_duplicates` argument to allow control over the `RunTSNE()` parameter `check_duplicates`.
+- Added a `check_duplicates` parameter to `RunTSNE()`, giving users control over how duplicate entries are handled during t-SNE computation.
 
 <ins>April 3<sup>rd</sup>, 2025</ins>
 - Added `variables_to_regress` argument to allow users to regress out unwanted sources of variation (e.g., mitochondrial content, RNA count) during scaling via `ScaleData(vars.to.regress = ...)`.

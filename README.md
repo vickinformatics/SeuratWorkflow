@@ -18,12 +18,16 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - `run_integration`: Specifies whether integration methods such as Harmony, CCA, RPCA, and JPCA should be applied. When set to TRUE, integration will be performed using the specified integration methods (default is FALSE).
 - `integration_method`: The integration method(s) to use. Options include "harmony", "CCAIntegration", "RPCAIntegration", and "JointPCAIntegration". Multiple methods can be specified (default is "harmony").
 - `run_tSNE_UMAP`: Specifies whether tSNE and UMAP dimensionality reductions should be performed (default is FALSE).
+- `check_duplicates`: Checks for duplicated cell names in `RunTSNE()` (default is FALSE).
 - `run_clustering`: Controls whether clustering is performed. If set to TRUE, clustering will be performed on the integrated data unless more than one integration method is specified. If integration is not performed, clustering will default to using PCA.
 - `resolutions`: A numeric vector of resolutions to be used in clustering.
 
 ## Updates
 <ins>September 3<sup>rd</sup>, 2025</ins>
-- Added `check_duplicates` argument to allow control over the `RunTSNE()` parameter `check_duplicates`. Default is `FALSE`.
+- Added `check_duplicates` argument to allow control over the `RunTSNE()` parameter `check_duplicates`.
+
+<ins>April 3<sup>rd</sup>, 2025</ins>
+- Added `variables_to_regress` argument to allow users to regress out unwanted sources of variation (e.g., mitochondrial content, RNA count) during scaling via `ScaleData(vars.to.regress = ...)`.
 
 <ins>March 5<sup>th</sup>, 2025</ins>
 - The user can specify the number of principal components (`PCs_pca`, `PCs_harmony`, etc.) to use for each reduction method.

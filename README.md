@@ -22,8 +22,8 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - `resolutions`: A numeric vector of resolutions to be used in clustering.
 
 ## Updates
-<ins>April 3<sup>rd</sup>, 2025</ins>
-- Added `variables_to_regress` argument to allow users to regress out unwanted sources of variation (e.g., mitochondrial content, RNA count) during scaling via `ScaleData(vars.to.regress = ...)`.
+<ins>September 3<sup>rd</sup>, 2025</ins>
+- Added `check_duplicates` argument to allow control over the `RunTSNE()` parameter `check_duplicates`. Default is `FALSE`.
 
 <ins>March 5<sup>th</sup>, 2025</ins>
 - The user can specify the number of principal components (`PCs_pca`, `PCs_harmony`, etc.) to use for each reduction method.

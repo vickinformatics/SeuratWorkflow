@@ -23,6 +23,9 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - `resolutions`: A numeric vector of resolutions to be used in clustering.
 
 ## Updates
+<ins>October 6<sup>th</sup>, 2025</ins>
+- Added support for per-function argument customization using named `.args` lists (e.g., `umap.args`, `scale.args`, `rpca.args`, etc.). This allows users to pass additional parameters directly to individual steps like `RunUMAP()`, `ScaleData()`, and `IntegrateLayers()`, without modifying the main function. Default values remain unchanged if no custom arguments are provided.
+
 <ins>September 3<sup>rd</sup>, 2025</ins>
 - Added a `check_duplicates` parameter to `RunTSNE()`, giving users control over how duplicate entries are handled during t-SNE computation.
 

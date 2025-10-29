@@ -17,10 +17,22 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - `PCs_jpca`: The number of principal components (PCs) to use for JPCA integration (default is 30).
 - `run_integration`: Specifies whether integration methods such as Harmony, CCA, RPCA, and JPCA should be applied. When set to TRUE, integration will be performed using the specified integration methods (default is FALSE).
 - `integration_method`: The integration method(s) to use. Options include "harmony", "CCAIntegration", "RPCAIntegration", and "JointPCAIntegration". Multiple methods can be specified (default is "harmony").
-- `run_tSNE_UMAP`: Specifies whether tSNE and UMAP dimensionality reductions should be performed (default is FALSE).
+- `run_tSNE_UMAP`: Specifies whether t-SNE and UMAP dimensionality reductions should be performed (default is FALSE).
 - `check_duplicates`: Checks for duplicated cell names in `RunTSNE()` (default is FALSE).
 - `run_clustering`: Controls whether clustering is performed. If set to TRUE, clustering will be performed on the integrated data unless more than one integration method is specified. If integration is not performed, clustering will default to using PCA.
 - `resolutions`: A numeric vector of resolutions to be used in clustering.
+- `normalize.args`: A named list of additional arguments to pass to NormalizeData() (default is NULL).
+- `variable.features.args`: A named list of additional arguments to pass to FindVariableFeatures() (default is NULL).
+- `scale.args`: A named list of additional arguments to pass to ScaleData() (default is NULL).
+- `pca.args`: A named list of additional arguments to pass to RunPCA() (default is NULL).
+- `harmony.args`: A named list of additional arguments to pass to RunHarmony() (default is NULL).
+- `cca.args`: A named list of additional arguments to pass to IntegrateLayers() for CCA (default is NULL).
+- `rpca.args`: A named list of additional arguments to pass to IntegrateLayers() for RPCA (default is NULL).
+- `jpca.args`: A named list of additional arguments to pass to IntegrateLayers() for JPCA (default is NULL).
+- `tsne.args`: A named list of additional arguments to pass to RunTSNE() (default is NULL).
+- `umap.args`: A named list of additional arguments to pass to RunUMAP() (default is NULL).
+- `neighbors.args`: A named list of additional arguments to pass to FindNeighbors() (default is NULL).
+- `clusters.args`: A named list of additional arguments to pass to FindClusters() (default is NULL).
 
 ## Updates
 <ins>October 6<sup>th</sup>, 2025</ins>
@@ -36,7 +48,7 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - The user can specify the number of principal components (`PCs_pca`, `PCs_harmony`, etc.) to use for each reduction method.
 - Added `run_integration` option to allow users to choose whether to perform data integration.
 - Introduced more integration methods, including Reciprocal PCA and Joint PCA (RPCA and JPCA), alongside the existing Harmony and CCA methods.
-- Added `run_tSNE_UMAP` option to allow users to choose whether to perform tSNE and UMAP dimensionality reductions.
+- Added `run_tSNE_UMAP` option to allow users to choose whether to perform t-SNE and UMAP dimensionality reductions.
 
 ## References
 <ins>Seurat</ins>

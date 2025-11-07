@@ -1,8 +1,9 @@
 # Run_Seurat()
-Note: If the user chooses not to define the number of PCs for PCA or Harmony (i.e., setting `PCs_pca` or `PCs_harmony` as NULL), they must source the custom `FindMinimumPCs` function before running `Run_Seurat`, as this will automatically determine the minimum number of PCs. Please refer to the documentation for [FindMinimumPCs](https://github.com/vickinformatics/FindMinimumPCs).
+- `SeuratWorkflow()` is now deprecated and has been replaced by `Run_Seurat()`.
+- If the user chooses not to define the number of PCs for PCA or Harmony (i.e., setting `PCs_pca` or `PCs_harmony` as NULL), they must source the custom `FindMinimumPCs` function before running `Run_Seurat()`, as this will automatically determine the minimum number of PCs. Please refer to the documentation for [FindMinimumPCs](https://github.com/vickinformatics/FindMinimumPCs).
 
 ## Description
-The `Run_Seurat` function is a comprehensive single-cell RNA sequencing (scRNA-seq) analysis pipeline designed to preprocess, integrate, and visualize data using the Seurat workflow. It includes steps for normalization, feature selection, dimensionality reduction, and data integration using methods such as Harmony, Canonical Correlation Analysis (CCA), Reciprocal PCA (RPCA), and Joint PCA (JPCA). It also supports clustering and dimensionality reduction visualizations like t-SNE and UMAP.
+The `Run_Seurat()` function is a comprehensive single-cell RNA sequencing (scRNA-seq) analysis pipeline designed to preprocess, integrate, and visualize data using the Seurat workflow. It includes steps for normalization, feature selection, dimensionality reduction, and data integration using methods such as Harmony, Canonical Correlation Analysis (CCA), Reciprocal PCA (RPCA), and Joint PCA (JPCA). It also supports clustering and dimensionality reduction visualizations like t-SNE and UMAP.
 
 ## Arguments
 - `seurat`: A Seurat object containing the single-cell RNA sequencing data.

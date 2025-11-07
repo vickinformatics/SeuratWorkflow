@@ -1,4 +1,4 @@
-# Run_Seurat
+# Run_Seurat()
 Note: If the user chooses not to define the number of PCs for PCA or Harmony (i.e., setting `PCs_pca` or `PCs_harmony` as NULL), they must source the custom `FindMinimumPCs` function before running `Run_Seurat`, as this will automatically determine the minimum number of PCs. Please refer to the documentation for [FindMinimumPCs](https://github.com/vickinformatics/FindMinimumPCs).
 
 ## Description
@@ -36,7 +36,7 @@ The `Run_Seurat` function is a comprehensive single-cell RNA sequencing (scRNA-s
 
 ## Updates
 <ins>November 7<sup>th</sup>, 2025</ins>
-- Renamed `SeuratWorkflow` to `Run_Seurat` for clarity. `SeuratWorkflow` is now deprecated and no longer maintained.
+- Renamed `SeuratWorkflow()` to `Run_Seurat()` for clarity. `SeuratWorkflow()` is now deprecated and no longer maintained.
 
 <ins>October 6<sup>th</sup>, 2025</ins>
 - Added support for per-function argument customization using named `.args` lists (e.g., `umap.args`, `scale.args`, `rpca.args`, etc.). This allows users to pass additional parameters directly to individual steps like `RunUMAP()`, `ScaleData()`, and `IntegrateLayers()`, without modifying the main function. Default values remain unchanged if no custom arguments are provided.

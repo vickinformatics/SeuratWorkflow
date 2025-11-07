@@ -1,6 +1,6 @@
-#' SeuratWorkflow
+#' Run_Seurat
 #' 
-#' The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scRNA-seq) analysis pipeline designed to preprocess, integrate, and visualize data using the Seurat workflow.
+#' The `Run_Seurat()` function is a comprehensive single-cell RNA sequencing (scRNA-seq) analysis pipeline designed to preprocess, integrate, and visualize data using the Seurat workflow.
 #' It includes steps for normalization, feature selection, dimensionality reduction, and data integration using methods such as Harmony, Canonical Correlation Analysis (CCA), Reciprocal PCA (RPCA), and Joint PCA (JPCA).
 #' It also supports clustering and dimensionality reduction visualizations like t-SNE and UMAP.
 #'
@@ -9,8 +9,8 @@
 #' @param nfeatures The number of variable features to select for downstream analysis (default is 2000).
 #' @param variables_to_regress A character vector of metadata variables to regress out during scaling (e.g., c("percent.mt", "nCount_RNA")). If NULL, no regression is performed (default is NULL).
 #' @param seed A random seed for reproducibility (default is 123).
-#' @param PCs_pca The number of principal components (PCs) to use for PCA. If not specified, it will be calculated using the `FindMinimumPCs` function.
-#' @param PCs_harmony The number of principal components (PCs) to use for Harmony integration. If not specified, it will be calculated using the `FindMinimumPCs` function.
+#' @param PCs_pca The number of principal components (PCs) to use for PCA. If not specified, it will be calculated using the `FindMinimumPCs()` function.
+#' @param PCs_harmony The number of principal components (PCs) to use for Harmony integration. If not specified, it will be calculated using the `FindMinimumPCs()` function.
 #' @param PCs_cca The number of principal components (PCs) to use for CCA integration (default is 30).
 #' @param PCs_rpca The number of principal components (PCs) to use for RPCA integration (default is 30).
 #' @param PCs_jpca The number of principal components (PCs) to use for JPCA integration (default is 30).
@@ -35,8 +35,8 @@
 #' 
 #' @return A Seurat object with the results of preprocessing, integration, and clustering.
 #'
-#' @note If the user chooses not to define the number of PCs for PCA or Harmony (i.e., setting `PCs_pca` or `PCs_harmony` to NULL), they must source the custom `FindMinimumPCs` function
-#' before running `SeuratWorkflow`, as this will automatically determine the minimum number of PCs.
+#' @note If the user chooses not to define the number of PCs for PCA or Harmony (i.e., setting `PCs_pca` or `PCs_harmony` to NULL), they must source the custom `FindMinimumPCs()` function
+#' before running `Run_Seurat()`, as this will automatically determine the minimum number of PCs.
 #' 
 #' @references
 #' Hao Y, Stuart T, Kowalski MH, Choudhary S, Hoffman P, Hartman A, Srivastava A, Molla G, Madad S, Fernandez-Granda C, Satija R (2023). "Dictionary learning for integrative, multimodal and scalable single-cell analysis." *Nature Biotechnology*. doi:10.1038/s41587-023-01767-y, https://doi.org/10.1038/s41587-023-01767-y.
@@ -52,43 +52,43 @@
 #' Korsunsky I, Millard N, Fan J, Slowikowski K, Zhang F, Wei K, Baglaenko Y, Brenner M, Loh P, Raychaudhuri S (2019). "Fast, sensitive and accurate integration of single-cell data with Harmony." *Nature Methods*, 16(12), 1289–1296. https://doi.org/10.1038/s41592-019-0619-0.
 #'
 #' @author Vicki Do
-#' @lastUpdated 2025-10-6
+#' @lastUpdated 2025-11-7
 #'
 #' @examples
-#' seurat_obj <- SeuratWorkflow(seurat = seurat_obj, run_integration = TRUE, integration_method = c("harmony", "CCAIntegration"), run_clustering = FALSE)
-#' seurat_obj <- SeuratWorkflow(seurat = seurat_obj, PCs_pca = 30, run_integration = FALSE, run_clustering = TRUE, resolutions = c(0.4, 0.6, 0.8))
-#' seurat_obj <- SeuratWorkflow(seurat = seurat_obj, run_integration = TRUE, integration_method = "RPCAIntegration", rpca.args = list(k.weight = 50))
-#' seurat_obj <- SeuratWorkflow(seurat = seurat_obj, run_tSNE_UMAP = TRUE, umap.args = list(min.dist = 0.1, n.neighbors = 50))
-#' seurat_obj <- SeuratWorkflow(seurat = seurat_obj, run_integration = TRUE, integration_method = c("RPCAIntegration", "CCAIntegration"), rpca.args = list(k.weight = 25), cca.args = list(k.weight = 150))
+#' seurat_obj <- Run_Seurat(seurat = seurat_obj, run_integration = TRUE, integration_method = c("harmony", "CCAIntegration"), run_clustering = FALSE)
+#' seurat_obj <- Run_Seurat(seurat = seurat_obj, PCs_pca = 30, run_integration = FALSE, run_clustering = TRUE, resolutions = c(0.4, 0.6, 0.8))
+#' seurat_obj <- Run_Seurat(seurat = seurat_obj, run_integration = TRUE, integration_method = "RPCAIntegration", rpca.args = list(k.weight = 50))
+#' seurat_obj <- Run_Seurat(seurat = seurat_obj, run_tSNE_UMAP = TRUE, umap.args = list(min.dist = 0.1, n.neighbors = 50))
+#' seurat_obj <- Run_Seurat(seurat = seurat_obj, run_integration = TRUE, integration_method = c("RPCAIntegration", "CCAIntegration"), rpca.args = list(k.weight = 25), cca.args = list(k.weight = 150))
 
-SeuratWorkflow <- function(seurat,
-                           batch_column = "orig.ident",
-                           nfeatures = 2000,
-                           variables_to_regress = NULL,
-                           seed = 123,
-                           PCs_pca = NULL, 
-                           PCs_harmony = NULL,
-                           PCs_cca = 30,
-                           PCs_rpca = 30,
-                           PCs_jpca = 30,
-                           run_integration = FALSE,
-                           integration_method = "harmony",
-                           run_tSNE_UMAP = FALSE,
-                           check_duplicates = FALSE,
-                           run_clustering = FALSE,
-                           resolutions = c(0.2, 0.4, 0.6, 0.8, 1.0),
-                           normalize.args = NULL,
-                           variable.features.args = NULL,
-                           scale.args = NULL,
-                           pca.args = NULL,
-                           harmony.args = NULL,
-                           cca.args = NULL,
-                           rpca.args = NULL,
-                           jpca.args = NULL,
-                           tsne.args = NULL,
-                           umap.args = NULL,
-                           neighbors.args = NULL,
-                           clusters.args = NULL) {
+Run_Seurat <- function(seurat,
+                       batch_column = "orig.ident",
+                       nfeatures = 2000,
+                       variables_to_regress = NULL,
+                       seed = 123,
+                       PCs_pca = NULL, 
+                       PCs_harmony = NULL,
+                       PCs_cca = 30,
+                       PCs_rpca = 30,
+                       PCs_jpca = 30,
+                       run_integration = FALSE,
+                       integration_method = "harmony",
+                       run_tSNE_UMAP = FALSE,
+                       check_duplicates = FALSE,
+                       run_clustering = FALSE,
+                       resolutions = c(0.2, 0.4, 0.6, 0.8, 1.0),
+                       normalize.args = NULL,
+                       variable.features.args = NULL,
+                       scale.args = NULL,
+                       pca.args = NULL,
+                       harmony.args = NULL,
+                       cca.args = NULL,
+                       rpca.args = NULL,
+                       jpca.args = NULL,
+                       tsne.args = NULL,
+                       umap.args = NULL,
+                       neighbors.args = NULL,
+                       clusters.args = NULL) {
   
   # Normalization
   if (is.null(normalize.args)) {
@@ -123,7 +123,7 @@ SeuratWorkflow <- function(seurat,
   }
   print(ElbowPlot(seurat))
   
-  # Use provided PCs_pca or calculate using FindMinimumPCs (see documentation)
+  # Use provided PCs_pca or calculate using FindMinimumPCs function (see documentation)
   if (is.null(PCs_pca)) {
     PCs_pca <- FindMinimumPCs(seurat, reduction_type = "pca")
   }

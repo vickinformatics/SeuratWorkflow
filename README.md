@@ -1,6 +1,6 @@
 # Run_Seurat()
-- `SeuratWorkflow()` is now deprecated and has been replaced by `Run_Seurat()`.
-- If the user chooses not to define the number of PCs for PCA or Harmony (i.e., setting `PCs_pca` or `PCs_harmony` as NULL), they must source the custom `FindMinimumPCs` function before running `Run_Seurat()`, as this will automatically determine the minimum number of PCs. Please refer to the documentation for [FindMinimumPCs](https://github.com/vickinformatics/FindMinimumPCs).
+- ⚠️ `SeuratWorkflow()` is now deprecated and has been replaced by `Run_Seurat()`.
+- If the user chooses not to define the number of PCs for PCA or Harmony (i.e., setting `PCs_pca` or `PCs_harmony` as NULL), they must source the custom `FindMinimumPCs()` function before running `Run_Seurat()`, as this will automatically determine the minimum number of PCs. Please refer to the documentation for [FindMinimumPCs](https://github.com/vickinformatics/FindMinimumPCs).
 
 ## Description
 The `Run_Seurat()` function is a comprehensive single-cell RNA sequencing (scRNA-seq) analysis pipeline designed to preprocess, integrate, and visualize data using the Seurat workflow. It includes steps for normalization, feature selection, dimensionality reduction, and data integration using methods such as Harmony, Canonical Correlation Analysis (CCA), Reciprocal PCA (RPCA), and Joint PCA (JPCA). It also supports clustering and dimensionality reduction visualizations like t-SNE and UMAP.
@@ -11,8 +11,8 @@ The `Run_Seurat()` function is a comprehensive single-cell RNA sequencing (scRNA
 - `nfeatures`: The number of variable features to select for downstream analysis (default is 2000).
 - `variables_to_regress`: A character vector of metadata variables to regress out during scaling (e.g., c("percent.mt", "nCount_RNA")). If NULL, no regression is performed (default is NULL).
 - `seed`: A random seed for reproducibility (default is 123).
-- `PCs_pca`: The number of principal components (PCs) to use for PCA. If not specified, it will be calculated using the `FindMinimumPCs` function.
-- `PCs_harmony`: The number of principal components (PCs) to use for Harmony integration. If not specified, it will be calculated using the `FindMinimumPCs` function.
+- `PCs_pca`: The number of principal components (PCs) to use for PCA. If not specified, it will be calculated using the `FindMinimumPCs()` function.
+- `PCs_harmony`: The number of principal components (PCs) to use for Harmony integration. If not specified, it will be calculated using the `FindMinimumPCs()` function.
 - `PCs_cca`: The number of principal components (PCs) to use for CCA integration (default is 30).
 - `PCs_rpca`: The number of principal components (PCs) to use for RPCA integration (default is 30).
 - `PCs_jpca`: The number of principal components (PCs) to use for JPCA integration (default is 30).

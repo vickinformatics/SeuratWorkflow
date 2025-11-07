@@ -1,8 +1,8 @@
-# SeuratWorkflow
-Note: If the user chooses not to define the number of PCs for PCA or Harmony (i.e., setting `PCs_pca` or `PCs_harmony` as NULL), they must source the custom `FindMinimumPCs` function before running `SeuratWorkflow`, as this will automatically determine the minimum number of PCs. Please refer to the documentation for [FindMinimumPCs](https://github.com/vickinformatics/FindMinimumPCs).
+# Run_Seurat
+Note: If the user chooses not to define the number of PCs for PCA or Harmony (i.e., setting `PCs_pca` or `PCs_harmony` as NULL), they must source the custom `FindMinimumPCs` function before running `Run_Seurat`, as this will automatically determine the minimum number of PCs. Please refer to the documentation for [FindMinimumPCs](https://github.com/vickinformatics/FindMinimumPCs).
 
 ## Description
-The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scRNA-seq) analysis pipeline designed to preprocess, integrate, and visualize data using the Seurat workflow. It includes steps for normalization, feature selection, dimensionality reduction, and data integration using methods such as Harmony, Canonical Correlation Analysis (CCA), Reciprocal PCA (RPCA), and Joint PCA (JPCA). It also supports clustering and dimensionality reduction visualizations like t-SNE and UMAP.
+The `Run_Seurat` function is a comprehensive single-cell RNA sequencing (scRNA-seq) analysis pipeline designed to preprocess, integrate, and visualize data using the Seurat workflow. It includes steps for normalization, feature selection, dimensionality reduction, and data integration using methods such as Harmony, Canonical Correlation Analysis (CCA), Reciprocal PCA (RPCA), and Joint PCA (JPCA). It also supports clustering and dimensionality reduction visualizations like t-SNE and UMAP.
 
 ## Arguments
 - `seurat`: A Seurat object containing the single-cell RNA sequencing data.
@@ -35,6 +35,9 @@ The `SeuratWorkflow` function is a comprehensive single-cell RNA sequencing (scR
 - `clusters.args`: A named list of additional arguments to pass to FindClusters() (default is NULL).
 
 ## Updates
+<ins>November 7<sup>th</sup>, 2025</ins>
+- Renamed `SeuratWorkflow` to `Run_Seurat` for clarity. `SeuratWorkflow` is now deprecated and no longer maintained.
+
 <ins>October 6<sup>th</sup>, 2025</ins>
 - Added support for per-function argument customization using named `.args` lists (e.g., `umap.args`, `scale.args`, `rpca.args`, etc.). This allows users to pass additional parameters directly to individual steps like `RunUMAP()`, `ScaleData()`, and `IntegrateLayers()`, without modifying the main function. Default values remain unchanged if no custom arguments are provided.
 

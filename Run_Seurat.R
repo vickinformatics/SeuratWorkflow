@@ -16,7 +16,7 @@
 #' @param PCs_jpca The number of principal components (PCs) to use for JPCA integration (default is 30).
 #' @param run_integration Specifies whether integration methods such as Harmony, CCA, RPCA, and JPCA should be applied. When set to TRUE, integration will be performed using the specified integration methods (default is FALSE).
 #' @param integration_method The integration method(s) to use. Options include "harmony", "CCAIntegration", "RPCAIntegration", and "JointPCAIntegration". Multiple methods can be specified (default is "harmony").
-#' @param run_tSNE_UMAP Specifies whether t-SNE and UMAP dimensionality reductions should be performed (default is FALSE).
+#' @param run_reductions Specifies whether t-SNE and UMAP dimensionality reductions should be performed (default is FALSE).
 #' @param check_duplicates Checks for duplicated cell names in `RunTSNE()` (default is FALSE).
 #' @param run_clustering Controls whether clustering is performed. If set to TRUE, clustering will be performed on the integrated data unless more than one integration method is specified. If integration is not performed, clustering will default to using PCA.
 #' @param resolutions A numeric vector of resolutions to be used in clustering.
@@ -58,7 +58,7 @@
 #' seurat_obj <- Run_Seurat(seurat = seurat_obj, run_integration = TRUE, integration_method = c("harmony", "CCAIntegration"), run_clustering = FALSE)
 #' seurat_obj <- Run_Seurat(seurat = seurat_obj, PCs_pca = 30, run_integration = FALSE, run_clustering = TRUE, resolutions = c(0.4, 0.6, 0.8))
 #' seurat_obj <- Run_Seurat(seurat = seurat_obj, run_integration = TRUE, integration_method = "RPCAIntegration", rpca.args = list(k.weight = 50))
-#' seurat_obj <- Run_Seurat(seurat = seurat_obj, run_tSNE_UMAP = TRUE, umap.args = list(min.dist = 0.1, n.neighbors = 50))
+#' seurat_obj <- Run_Seurat(seurat = seurat_obj, run_reductions = TRUE, umap.args = list(min.dist = 0.1, n.neighbors = 50))
 #' seurat_obj <- Run_Seurat(seurat = seurat_obj, run_integration = TRUE, integration_method = c("RPCAIntegration", "CCAIntegration"), rpca.args = list(k.weight = 25), cca.args = list(k.weight = 150))
 
 Run_Seurat <- function(seurat,
@@ -73,7 +73,7 @@ Run_Seurat <- function(seurat,
                        PCs_jpca = 30,
                        run_integration = FALSE,
                        integration_method = "harmony",
-                       run_tSNE_UMAP = FALSE,
+                       run_reductions = FALSE,
                        check_duplicates = FALSE,
                        run_clustering = FALSE,
                        resolutions = c(0.2, 0.4, 0.6, 0.8, 1.0),
@@ -197,7 +197,7 @@ Run_Seurat <- function(seurat,
   }
   
   # Run tSNE and UMAP using PCA
-  if (run_tSNE_UMAP) {
+  if (run_reductions) {
     Idents(seurat) <- batch_column
     
     # tSNE on PCA
@@ -225,7 +225,7 @@ Run_Seurat <- function(seurat,
   }
   
   # Run tSNE and UMAP using Harmony if integration is performed
-  if (run_integration && "harmony" %in% integration_method && run_tSNE_UMAP) {
+  if (run_integration && "harmony" %in% integration_method && run_reductions) {
     Idents(seurat) <- batch_column
     
     # tSNE on Harmony
@@ -253,7 +253,7 @@ Run_Seurat <- function(seurat,
   }
   
   # Run tSNE and UMAP using CCA integration if integration is performed
-  if (run_integration && "CCAIntegration" %in% integration_method && run_tSNE_UMAP) {
+  if (run_integration && "CCAIntegration" %in% integration_method && run_reductions) {
     Idents(seurat) <- batch_column
     
     # tSNE on CCA
@@ -281,7 +281,7 @@ Run_Seurat <- function(seurat,
   }
   
   # Run tSNE and UMAP using RPCA integration if integration is performed
-  if (run_integration && "RPCAIntegration" %in% integration_method && run_tSNE_UMAP) {
+  if (run_integration && "RPCAIntegration" %in% integration_method && run_reductions) {
     Idents(seurat) <- batch_column
     
     # tSNE on RPCA
@@ -309,7 +309,7 @@ Run_Seurat <- function(seurat,
   }
   
   # Run tSNE and UMAP using JointPCA integration if integration is performed
-  if (run_integration && "JointPCAIntegration" %in% integration_method && run_tSNE_UMAP) {
+  if (run_integration && "JointPCAIntegration" %in% integration_method && run_reductions) {
     Idents(seurat) <- batch_column
     
     # tSNE on JPCA
